@@ -6,7 +6,7 @@ before_install:
   - docker build -t rajat7813/react-test -f ./client/Dockerfile.dev ./cleint
 
 script:
-  - docker run rajat7813/react-test npm test -- --coverage
+  - docker run -e CI=true rajat7813/react-test npm test
 
 after_sucess:
   - docker build -t rajat7813/multi-client ./client
