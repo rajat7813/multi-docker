@@ -1,0 +1,22 @@
+sudo: required
+services: 
+  - docker
+
+before_install:
+  - docker build -t rajat7813/react-test -f ./client/Dockerfile.dev ./cleint
+
+script:
+  - docker run rajat7813/react-test npm test -- --coverage
+
+after_sucess:
+  - docker build -t rajat7813/multi-client ./client
+  - docker build -t rajat7813/multi-nginx ./nginx
+  - docker build -t rajat7813/multi-server ./server
+  - docker build -t rajat7813/multi-worker ./worker
+  # Login to the Docker Cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # take those images and push to docker hub
+  - docker push rajat7813/multi-client
+  - docker push rajat7813/multi-nginx
+  - docker push rajat7813/multi-server
+  - docker push rajat7813/multi-worker
