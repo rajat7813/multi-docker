@@ -12,7 +12,7 @@
             "name": "server",
             "image": "rajat7813/multi-server",
             "hostname": "api",
-            "essential": false                        ,
+            "essential": false,
             "memory": 128      
         },
         {
