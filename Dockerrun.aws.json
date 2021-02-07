@@ -1,6 +1,6 @@
 {
     "AWSEBDockerrunVersion": 2,
-    "ContainerDefinitions":[
+    "ContainerDefinitions": [
         {
             "name": "client",
             "image": "rajat7813/multi-client",
