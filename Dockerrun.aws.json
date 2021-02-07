@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "ContainerDefinitions":[
+        {
+            "name": "client",
+            "image": "rajat7813/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "rajat7813/multi-server",
+            "hostname": "api",
+            "essential": false                        
+        },
+        {
+            "name": "worker",
+            "image": "rajat7813/multi-worker",
+            "hostname": "worker",
+            "essential": false                       
+        },
+        {
+            "name": "nginx",
+            "image": "rajat7813/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                "hostPort": 80,
+                "containerPort": 80
+                }
+            ],
+            "link": ["client", "server"]         
+        }        
+    ]
+}
